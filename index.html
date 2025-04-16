@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Test Psicológico</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+  <div class="container">
+    <h1>🧠 Test Psicológico</h1>
+
+    <!-- Pantalla de inicio -->
+    <div id="intro">
+      <p>¿Quieres realizar un test psicológico?</p>
+      <button id="start-btn">Sí, quiero hacer un test</button>
+    </div>
+
+    <!-- Menú de selección de test -->
+    <div id="test-menu" class="hidden">
+      <h2>Selecciona un test:</h2>
+      <ul>
+        <li><button class="test-btn" data-test="depresion">🟣 Test de Depresión</button></li>
+        <li><button class="test-btn" data-test="ansiedad">🔵 Test de Ansiedad</button></li>
+        <li><button class="test-btn" data-test="tdah">🟢 Test de TDAH</button></li>
+      </ul>
+    </div>
+
+    <!-- Contenedor del test -->
+    <div id="quiz-container" class="hidden"></div>
+
+    <!-- Botón para pasar a la siguiente pregunta -->
+    <button id="next-btn" class="hidden">Siguiente</button>
+
+    <!-- Resultado final -->
+    <div id="result" class="hidden"></div>
+  </div>
+
+<script src="script.js"></script>
+</body>
+</html>
