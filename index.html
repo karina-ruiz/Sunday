@@ -3,40 +3,92 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Test Psicológico</title>
-  <link rel="stylesheet" href="styles.css" />
+  <title>Test Psicológico | Sunday</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="styles.css" />
 </head>
-<body>
-  <div class="container">
-    <h1>🧠 Test Psicológico</h1>
+<body class="bg-indigo-50 font-sans text-gray-800 min-h-screen flex items-center justify-center p-4">
 
-    <!-- Pantalla de inicio -->
-    <div id="intro">
-      <p>¿Quieres realizar un test psicológico?</p>
-      <button id="start-btn">Sí, quiero hacer un test</button>
+    <div class="w-full max-w-xl bg-white p-8 rounded-xl shadow-lg space-y-6">
+  
+      <h1 class="text-3xl font-bold text-indigo-600 text-center">🧠 Sunday - Test Psicológico</h1>
+  
+      <!-- Frase destacada y logo -->
+      <div class="text-center mb-4">
+        <div class="flex justify-center">
+          <!-- Imagen representativa -->
+          <img src="https://cdn-icons-png.flaticon.com/512/4140/4140047.png"
+               alt="Bienestar mental"
+               class="w-24 h-24 mb-2 opacity-90">
+        </div>
+        <!-- Mensaje inspirador -->
+        <p class="text-lg text-indigo-600 italic font-medium">
+          "Cuidar tu mente también es amor propio 💜"
+        </p>
+      </div>
+  
+      <!-- Pantalla de inicio -->
+      <div id="intro" class="text-center space-y-4">
+        <p class="text-lg">¿Te gustaría realizar un test psicológico?</p>
+        <button id="start-btn"
+                class="bg-indigo-200 hover:bg-indigo-300 text-indigo-800 font-semibold py-2 px-6 rounded-lg transition">
+          Sí, quiero hacer un test
+        </button>
+      </div>
+  
+      <!-- Menú de selección de test -->
+      <div id="test-menu" class="hidden text-center space-y-4">
+        <h2 class="text-xl font-semibold text-indigo-700">Selecciona un test:</h2>
+        <ul class="space-y-2">
+            <li>
+              <button class="test-btn w-full bg-purple-200 hover:bg-purple-300 text-purple-900 py-2 px-4 rounded-lg transition"
+                      data-test="depresion">
+                🟣 Test de Depresión
+              </button>
+            </li>
+            <li>
+              <button class="test-btn w-full bg-blue-200 hover:bg-blue-300 text-blue-900 py-2 px-4 rounded-lg transition"
+                      data-test="ansiedad">
+                🔵 Test de Ansiedad
+              </button>
+            </li>
+            <li>
+              <button class="test-btn w-full bg-green-200 hover:bg-green-300 text-green-900 py-2 px-4 rounded-lg transition"
+                      data-test="tdah">
+                🟢 Test de TDAH
+              </button>
+            </li>
+            <li>
+                <button class="test-btn w-full bg-rose-200 hover:bg-rose-300 text-rose-900 py-2 px-4 rounded-lg transition"
+                        data-test="tlp">
+                  🧠 Test de TLP
+                </button>
+              </li>
+              <li>
+                <button class="test-btn w-full bg-gray-200 hover:bg-gray-300 text-gray-900 py-2 px-4 rounded-lg transition"
+                        data-test="toc">
+                  ⚪ Test de TOC
+                </button>
+              </li>
+          </ul>
+      </div>
+  
+      <!-- Contenedor del test -->
+      <div id="quiz-container" class="hidden space-y-4 text-left"></div>
+  
+      <!-- Botón para pasar a la siguiente pregunta -->
+      <div class="text-center">
+        <button id="next-btn"
+                class="hidden bg-indigo-300 hover:bg-indigo-400 text-indigo-900 font-medium py-2 px-6 rounded-lg transition">
+          Siguiente
+        </button>
+      </div>
+  
+      <!-- Resultado final -->
+      <div id="result" class="hidden text-center text-lg font-medium text-indigo-700"></div>
+  
     </div>
-
-    <!-- Menú de selección de test -->
-    <div id="test-menu" class="hidden">
-      <h2>Selecciona un test:</h2>
-      <ul>
-        <li><button class="test-btn" data-test="depresion">🟣 Test de Depresión</button></li>
-        <li><button class="test-btn" data-test="ansiedad">🔵 Test de Ansiedad</button></li>
-        <li><button class="test-btn" data-test="tdah">🟢 Test de TDAH</button></li>
-      </ul>
-    </div>
-
-    <!-- Contenedor del test -->
-    <div id="quiz-container" class="hidden"></div>
-
-    <!-- Botón para pasar a la siguiente pregunta -->
-    <button id="next-btn" class="hidden">Siguiente</button>
-
-    <!-- Resultado final -->
-    <div id="result" class="hidden"></div>
-  </div>
-
-<script src="script.js"></script>
-</body>
-</html>
+  
+    <script src="script.js"></script>
+  </body>
+  
