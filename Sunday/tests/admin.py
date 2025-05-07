@@ -4,7 +4,7 @@ from .models import Categoria, Test, Pregunta, OpcionRespuesta, RespuestaUsuario
 # Opciones de respuesta en línea dentro de cada pregunta
 class OpcionRespuestaInline(admin.TabularInline):
     model = OpcionRespuesta
-    extra = 2  # Cuántas opciones en blanco se muestran por defecto
+    extra = 4
 
 # Configuración para las preguntas
 class PreguntaAdmin(admin.ModelAdmin):

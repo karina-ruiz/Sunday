@@ -1,18 +1,25 @@
 {% extends "base.html" %}
 
+{% block title %}Selecciona un Test{% endblock %}
+
 {% block content %}
-
-<body>
-    <h1>Selecciona un Test</h1>
-    <ul>
-        {% for test in tests %}
-            <li>
-                <a href="{% url 'tomar_test' test.id %}">{{ test.nombre }}</a> - {{ test.descripcion }}
-            </li>
-        {% empty %}
-            <li>No hay tests disponibles.</li>
-        {% endfor %}
-    </ul>
-</body>
-
+<div class="container my-5">
+    <h1 class="mb-4 text-2xl font-semibold">Selecciona un Test</h1>
+    
+    {% if tests %}
+        <ul class="list-group">
+            {% for test in tests %}
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <div>
+                        <strong>{{ test.nombre }}</strong><br>
+                        <small>{{ test.descripcion }}</small>
+                    </div>
+                    <a href="{% url 'tomar_test' test.id %}" class="btn btn-primary">Tomar</a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No hay tests disponibles.</p>
+    {% endif %}
+</div>
 {% endblock %}

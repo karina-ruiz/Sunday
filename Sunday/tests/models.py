@@ -18,7 +18,7 @@ class Test(models.Model):
 class Pregunta(models.Model):
     test = models.ForeignKey(Test, on_delete=models.CASCADE, related_name='preguntas')
     texto = models.TextField()
-    peso = models.IntegerField(default=1)  # Importancia relativa de la pregunta
+    peso = models.IntegerField(default=1)  
 
     def __str__(self):
         return self.texto
@@ -26,7 +26,7 @@ class Pregunta(models.Model):
 class OpcionRespuesta(models.Model):
     pregunta = models.ForeignKey(Pregunta, on_delete=models.CASCADE, related_name='opciones')
     texto = models.CharField(max_length=255)
-    valor = models.IntegerField()  # 1 = más leve, 4 = más grave
+    valor = models.IntegerField() 
 
     def __str__(self):
         return f'{self.texto} (Valor: {self.valor})'
