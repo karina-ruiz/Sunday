@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %}Selecciona un Test{% endblock %}
+{% block header %} {% endblock %}
+{% block content %}
+<div class="min-h-screen bg-amber-50 flex items-center justify-center px-4 py-6">
+    <div class="w-full max-w-2xl bg-white rounded-xl shadow-lg p-6">
+      <h1 class="text-3xl font-bold text-teal-700 mb-6 text-center">Selecciona un Test</h1>
+  
+      {% if tests %}
+        <ul class="space-y-4">
+          {% for test in tests %}
+            <li class="bg-teal-50 border border-teal-100 rounded-lg p-4 shadow-sm hover:shadow-md transition duration-200">
+              <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3">
+                <div>
+                  <h2 class="text-xl font-semibold text-teal-800">{{ test.nombre }}</h2>
+                  <p class="text-sm text-gray-600">{{ test.descripcion }}</p>
+                </div>
+                <a href="{% url 'tomar_test' test.id %}"
+                   class="mt-2 sm:mt-0 inline-block bg-teal-600 text-white px-4 py-2 rounded-md hover:bg-teal-700 transition">
+                  Tomar Test
+                </a>
+              </div>
+            </li>
+          {% endfor %}
+        </ul>
+      {% else %}
+        <p class="text-center text-gray-500">No hay tests disponibles.</p>
+      {% endif %}
+    </div>
+  </div>
+  
+{% endblock %}

@@ -1,9 +1,0 @@
-{% extends "base.html" %}
-
-
-{% block content %}
-    <h1>Resultado del Test: {{ test.nombre }}</h1>
-    <p><strong>Puntuación total:</strong> {{ puntuacion_total }}</p>
-    <p><strong>Diagnóstico:</strong> {{ resultado }}</p>
-    <a href="{% url 'lista_tests' %}">Volver a la lista de tests</a>
-{% endblock %}

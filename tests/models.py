@@ -1,16 +1,9 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-class Categoria(models.Model):
-    nombre = models.CharField(max_length=100)
-
-    def __str__(self):
-        return self.nombre
-
 class Test(models.Model):
     nombre = models.CharField(max_length=100)
     descripcion = models.TextField(blank=True)
-    categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE, related_name='tests')
 
     def __str__(self):
         return self.nombre
@@ -18,7 +11,6 @@ class Test(models.Model):
 class Pregunta(models.Model):
     test = models.ForeignKey(Test, on_delete=models.CASCADE, related_name='preguntas')
     texto = models.TextField()
-    peso = models.IntegerField(default=1)  
 
     def __str__(self):
         return self.texto
@@ -26,7 +18,7 @@ class Pregunta(models.Model):
 class OpcionRespuesta(models.Model):
     pregunta = models.ForeignKey(Pregunta, on_delete=models.CASCADE, related_name='opciones')
     texto = models.CharField(max_length=255)
-    valor = models.IntegerField() 
+    valor = models.IntegerField(default=0)
 
     def __str__(self):
         return f'{self.texto} (Valor: {self.valor})'
