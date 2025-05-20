@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="max-w-3xl mx-auto p-6 bg-white rounded-lg shadow-lg text-center">
+    <h2 class="text-xl font-bold text-red-600 mb-4">¿Estás seguro de que quieres eliminar esta entrada?</h2>
+    <p class="text-gray-800">{{ entrada.texto.html|safe }}</p>
+
+    <form method="POST">
+        {% csrf_token %}
+        <button type="submit" class="bg-red-600 text-white py-2 px-4 rounded-md hover:bg-red-700 transition">
+            Sí, eliminar
+        </button>
+        <a href="{% url 'ver_entradas' %}" class="text-teal-600 ml-4">Cancelar</a>
+    </form>
+</div>
+{% endblock %}

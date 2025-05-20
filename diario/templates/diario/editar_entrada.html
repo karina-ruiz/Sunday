@@ -1,13 +1,11 @@
 {% extends 'base.html' %}
 
 {% block content %}
-
-
 <div class="min-h-screen bg-amber-50 flex items-center justify-center px-4 py-12">
     <div class="w-full max-w-2xl bg-white rounded-xl shadow-lg p-6 sm:p-8">
   
       <h2 class="text-2xl sm:text-3xl font-bold text-teal-700 mb-6 text-center">
-        Nueva entrada de diario
+        Editar entrada
       </h2>
   
       <form method="post" class="space-y-4">
@@ -17,7 +15,7 @@
         <div>
           {{ form.texto.label_tag }}
           <div id="editor-container">
-            {{ form.texto }} <!-- Este es el campo donde Quill se inicializa -->
+            {{ form.texto }}
           </div>
           {% for error in form.texto.errors %}
             <p class="text-red-500 text-sm">{{ error }}</p>
@@ -25,15 +23,10 @@
         </div>
   
         <button type="submit" class="bg-teal-600 text-white py-2 px-4 rounded-md hover:bg-teal-700 transition">
-          Guardar entrada
+          Guardar cambios
         </button>
       </form>
   
-      <p class="text-sm text-gray-600 mt-4 text-center">
-        <a href="{% url 'ver_entradas' %}" class="text-teal-600 hover:underline">Ver mis entradas anteriores</a>
-      </p>
-  
     </div>
   </div>
-
 {% endblock %}

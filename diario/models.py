@@ -1,9 +1,10 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django_quill.fields import QuillField
 
 class DiarioEntrada(models.Model):
     usuario = models.ForeignKey(User, on_delete=models.CASCADE)
-    texto = models.TextField()
+    texto = QuillField()
     fecha_creacion = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):

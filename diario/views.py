@@ -1,6 +1,6 @@
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 
 from .forms import DiarioEntradaForm
@@ -34,7 +34,35 @@ def nueva_entrada(request):
     return render(request, 'diario/nueva_entrada.html', {'form': form})
 
 
+import json
+
 @login_required
 def ver_entradas(request):
     entradas = DiarioEntrada.objects.filter(usuario=request.user).order_by('-fecha_creacion')
     return render(request, 'diario/ver_entradas.html', {'entradas': entradas})
+
+
+@login_required
+def eliminar_entrada(request, entrada_id):
+    entrada = get_object_or_404(DiarioEntrada, id=entrada_id, usuario=request.user)
+
+    if request.method == "POST":
+        entrada.delete()
+        return redirect('ver_entradas')  # Redirigir después de eliminar
+
+    return render(request, 'diario/confirmar_eliminar.html', {'entrada': entrada})
+
+
+@login_required
+def editar_entrada(request, entrada_id):
+    entrada = get_object_or_404(DiarioEntrada, id=entrada_id, usuario=request.user)
+    
+    if request.method == 'POST':
+        form = DiarioEntradaForm(request.POST, instance=entrada)
+        if form.is_valid():
+            form.save()
+            return redirect('ver_entradas')  # Redirige a la lista de entradas después de editar
+    else:
+        form = DiarioEntradaForm(instance=entrada)
+
+    return render(request, 'diario/editar_entrada.html', {'form': form, 'entrada': entrada})
