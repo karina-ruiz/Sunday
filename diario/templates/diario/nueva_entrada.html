@@ -17,7 +17,7 @@
         <div>
           {{ form.texto.label_tag }}
           <div id="editor-container">
-            {{ form.texto }} <!-- Este es el campo donde Quill se inicializa -->
+            {{ form.texto }} 
           </div>
           {% for error in form.texto.errors %}
             <p class="text-red-500 text-sm">{{ error }}</p>

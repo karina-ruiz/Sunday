@@ -10,15 +10,14 @@
       {% if entradas %}
         <ul class="space-y-6">
           {% for entrada in entradas %}
-            <li class="border border-amber-100 p-4 rounded-md shadow-sm bg-amber-50">
-              <p class="text-gray-800 whitespace-pre-line">{{ entrada.texto.html|safe }}</p>
-              <p class="text-sm text-gray-500 mt-2">📅 {{ entrada.fecha_creacion|date:"d M Y H:i" }}</p>
-            </li>
-            <div class="mt-2">
-              <a href="{% url 'editar_entrada' entrada.id %}" class="text-blue-600">✏️ Editar</a>
-              <a href="{% url 'eliminar_entrada' entrada.id %}" class="text-red-600">🗑 Eliminar</a>
-            </div>
-          {% endfor %}
+    <li class="border border-amber-100 p-4 rounded-md shadow-sm bg-amber-50">
+        <a href="{% url 'detalle_entrada' entrada.id %}" class="block hover:bg-amber-100 p-4 rounded-md">
+            <p class="text-gray-800">{{ entrada.texto.html|safe|truncatechars:100 }}</p>
+            <p class="text-sm text-gray-500 mt-2">📅 {{ entrada.fecha_creacion|date:"d M Y H:i" }}</p>
+        </a>
+    </li>
+{% endfor %}
+
         </ul>
       {% else %}
         <p class="text-gray-600 text-center">Aún no tienes entradas en tu diario.</p>

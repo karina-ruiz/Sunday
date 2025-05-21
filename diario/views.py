@@ -66,3 +66,9 @@ def editar_entrada(request, entrada_id):
         form = DiarioEntradaForm(instance=entrada)
 
     return render(request, 'diario/editar_entrada.html', {'form': form, 'entrada': entrada})
+
+
+@login_required
+def detalle_entrada(request, entrada_id):
+    entrada = get_object_or_404(DiarioEntrada, id=entrada_id, usuario=request.user)
+    return render(request, 'diario/detalle_entrada.html', {'entrada': entrada})

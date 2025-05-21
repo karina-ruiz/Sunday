@@ -10,4 +10,5 @@ urlpatterns = [
     path('diario/', views.ver_entradas, name='ver_entradas'),
     path('eliminar/<int:entrada_id>/', views.eliminar_entrada, name='eliminar_entrada'),
     path('entrada/<int:entrada_id>/editar/', views.editar_entrada, name='editar_entrada'),
+    path('entrada/<int:entrada_id>/', views.detalle_entrada, name='detalle_entrada'),
 ]

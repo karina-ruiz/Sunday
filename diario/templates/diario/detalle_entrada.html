@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="min-h-screen bg-amber-50 flex items-center justify-center px-4 py-12">
+    <div class="w-full max-w-2xl bg-white rounded-xl shadow-lg p-6 sm:p-8">
+  
+      <h2 class="text-2xl sm:text-3xl font-bold text-teal-700 mb-6 text-center">
+        Entrada completa
+      </h2>
+  
+      <div class="text-gray-800 whitespace-pre-line">
+        {{ entrada.texto.html|safe }}
+      </div>
+  
+      <p class="text-sm text-gray-500 mt-2">📅 {{ entrada.fecha_creacion|date:"d M Y H:i" }}</p>
+
+      <div class="mt-4 text-center">
+        <a href="{% url 'editar_entrada' entrada.id %}" class="text-blue-600">✏️ Editar</a>
+        <a href="{% url 'eliminar_entrada' entrada.id %}" class="text-red-600">🗑 Eliminar</a>
+      </div>
+
+      <div class="mt-6 text-center">
+        <a href="{% url 'ver_entradas' %}" class="bg-teal-600 text-white py-2 px-4 rounded-md hover:bg-teal-700 transition">
+          Volver a la lista
+        </a>
+      </div>
+  
+    </div>
+  </div>
+{% endblock %}
