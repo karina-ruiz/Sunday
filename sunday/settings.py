@@ -40,8 +40,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_quill',
+    'widget_tweaks',
     'tests',
     'diario',
+    'registro',
 ]
 
 STATIC_URL = '/static/'

@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %}Add commentMore actions
 
 {% block content %}
 <div class="min-h-screen bg-amber-50 flex items-center justify-center px-4 py-12">
@@ -7,19 +7,20 @@
         Bienvenido a <span class="text-amber-500">Sunday</span>
       </h1>
       
-      <p class="text-gray-600 text-base sm:text-lg mb-6 leading-relaxed">
+      <p class="text-teal-700 text-base sm:text-lg mb-6 leading-relaxed">
         Un espacio pensado para tu bienestar emocional. En Sunday creemos en el poder del cambio, en la esperanza y en la ayuda profesional como herramientas para sanar. Esta app es tu refugio: tranquilo, empático y diseñado para acompañarte en tu proceso.
       </p>
+      
   
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-8">
         <a href="{% url 'lista_tests' %}" class="bg-teal-600 text-white px-4 py-3 rounded-md hover:bg-teal-700 transition shadow text-sm sm:text-base">
           Tomar Test
         </a>
-        <a href="{% url "registro" %}" class="bg-amber-100 text-teal-800 px-4 py-3 rounded-md hover:bg-amber-200 transition shadow text-sm sm:text-base">
-          Diario
+        <a href="{% url 'registro' %}" class="bg-teal-600 text-white px-4 py-3 rounded-md hover:bg-teal-700 transition shadow text-sm sm:text-base">
+          Diario Emocional
         </a>
-        <a href="#" class="bg-amber-100 text-teal-800 px-4 py-3 rounded-md hover:bg-amber-200 transition shadow text-sm sm:text-base">
-          Chat con especialistas<br><span class="text-xs text-gray-500">(Próximamente)</span>
+        <a href="{% url 'register_emotions' %}" class="bg-teal-600 text-white px-4 py-3 rounded-md hover:bg-teal-700 transition shadow text-sm sm:text-base">
+          Registra tus Emociones
         </a>
         <a href="#" class="bg-amber-100 text-teal-800 px-4 py-3 rounded-md hover:bg-amber-200 transition shadow text-sm sm:text-base">
           Comunidad<br><span class="text-xs text-gray-500">(Próximamente)</span>

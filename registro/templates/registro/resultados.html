@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="min-h-screen bg-amber-50 flex flex-col items-center justify-center px-4 py-12">
+  <div class="bg-white p-6 rounded-xl shadow-md text-center max-w-3xl w-full">
+    <h2 class="text-2xl font-bold text-teal-700 mb-6">Resultados de hoy</h2>
+
+    {% if labels %}
+      <canvas id="emocionesChart" width="400" height="200"></canvas>
+
+      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+      <script>
+        const ctx = document.getElementById('emocionesChart').getContext('2d');
+        const chart = new Chart(ctx, {
+          type: 'bar',
+          data: {
+            labels: {{ labels|safe }},
+            datasets: [{
+              label: 'Intensidad (1 a 5)',
+              data: {{ data|safe }},
+              backgroundColor: 'rgba(13, 110, 108, 0.5)',  // teal oscuro con transparencia
+              borderColor: 'rgba(13, 110, 108, 1)',
+              borderWidth: 1,
+              borderRadius: 5,
+              maxBarThickness: 40
+            }]
+          },
+          options: {
+            scales: {
+              y: {
+                beginAtZero: true,
+                max: 5,
+                ticks: {
+                  stepSize: 1,
+                  color: '#4b5563'  // gris medio (text-gray-600)
+                },
+                title: {
+                  display: true,
+                  text: 'Intensidad (1-5)',
+                  color: '#134e4a',  // teal oscuro (text-teal-800)
+                  font: { weight: 'bold' }
+                }
+              },
+              x: {
+                ticks: {
+                  color: '#134e4a'  // teal oscuro
+                }
+              }
+            },
+            responsive: true,
+            plugins: {
+              legend: {
+                display: true,
+                position: 'top',
+                labels: {
+                  color: '#134e4a',
+                  font: { size: 14 }
+                }
+              },
+              title: {
+                display: true,
+                text: 'Intensidad promedio de emociones',
+                color: '#134e4a',
+                font: { size: 18, weight: 'bold' }
+              }
+            }
+          }
+        });
+      </script>
+    {% else %}
+      <p class="text-gray-600">No hay emociones registradas hoy. Por favor completa el formulario primero.</p>
+    {% endif %}
+  </div>
+</div>
+
+<div class="flex justify-center space-x-4 mt-8">
+  <a href="{% url 'resultados_dia' %}" class="bg-teal-600 text-teal-800 px-5 py-2 rounded-md hover:bg-teal-700 transition shadow">
+    Ver resultados diarios
+  </a>
+  <a href="{% url 'resultados_semana' %}" class="bg-teal-600 text-teal-800 px-5 py-2 rounded-md hover:bg-teal-700 transition shadow">
+    Ver resultados semanales
+  </a>
+</div>
+{% endblock %}

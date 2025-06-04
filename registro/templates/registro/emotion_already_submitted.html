@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="min-h-screen flex items-center justify-center bg-amber-50 px-4 py-12">
+  <div class="bg-white p-6 rounded-xl shadow-md text-center max-w-xl w-full">
+    <h2 class="text-2xl font-bold text-teal-700 mb-4">Ya has registrado tus emociones hoy</h2>
+    <div class="flex justify-center space-x-4">
+      <a href="{% url 'resultados_dia' %}" class="bg-teal-600 text-white px-5 py-2 rounded-md hover:bg-teal-700 transition shadow">
+        Ver resultados diarios
+      </a>
+      <a href="{% url 'resultados_semana' %}" class="bg-teal-600 text-white px-5 py-2 rounded-md hover:bg-teal-700 transition shadow">
+        Ver resultados semanales
+      </a>
+    </div>
+  </div>
+</div>
+{% endblock %}

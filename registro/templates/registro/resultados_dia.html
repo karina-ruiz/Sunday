@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="min-h-screen bg-amber-50 flex flex-col items-center justify-center px-4 py-12">
+  <h2 class="text-teal-700 font-bold text-3xl mb-6">Resultados para {{ date }}</h2>
+
+  {% if labels %}
+    <div class="bg-white p-6 rounded-xl shadow-md w-full max-w-3xl">
+      <canvas id="chartDia" width="400" height="200"></canvas>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+      const ctx = document.getElementById('chartDia').getContext('2d');
+      const chartDia = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: {{ labels|safe }},
+          datasets: [{
+            label: 'Intensidad promedio',
+            data: {{ intensities|safe }},
+            backgroundColor: 'rgba(13, 110, 108, 0.5)', // teal oscuro con transparencia
+            borderColor: 'rgba(13, 110, 108, 1)',
+            borderWidth: 1,
+            borderRadius: 4,
+            maxBarThickness: 40
+          }]
+        },
+        options: {
+          scales: {
+            y: { 
+              beginAtZero: true, 
+              max: 5,
+              ticks: {
+                stepSize: 1
+              },
+              title: {
+                display: true,
+                text: 'Intensidad (1-5)',
+                color: '#134e4a', // teal oscuro (text-teal-800)
+                font: { weight: 'bold' }
+              }
+            }
+          },
+          responsive: true,
+          plugins: {
+            legend: {
+              display: true,
+              position: 'top',
+              labels: {
+                color: '#134e4a', // teal oscuro
+                font: { size: 14 }
+              }
+            },
+            title: {
+              display: true,
+              text: 'Intensidad de emociones por día',
+              color: '#134e4a',
+              font: { size: 18, weight: 'bold' }
+            }
+          }
+        }
+      });
+    </script>
+  {% else %}
+    <p class="text-gray-600 text-center">No hay registros para este día.</p>
+  {% endif %}
+
+  <form method="get" class="mt-8 flex flex-col sm:flex-row items-center gap-3">
+    <label for="date" class="text-teal-800 font-semibold">Selecciona una fecha:</label>
+    <input 
+      type="date" 
+      id="date" 
+      name="date" 
+      value="{{ date }}" 
+      class="border border-teal-600 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-teal-600"
+    />
+    <button 
+      type="submit" 
+      class="bg-teal-600 text-teal-800 px-5 py-2 rounded-md hover:bg-teal-700 transition shadow"
+    >
+      Ver
+    </button>
+  </form>
+</div>
+{% endblock %}

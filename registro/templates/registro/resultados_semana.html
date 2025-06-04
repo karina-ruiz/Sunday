@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="min-h-screen bg-amber-50 flex flex-col items-center justify-center px-4 py-12">
+  <h2 class="text-teal-700 font-bold text-3xl mb-6 text-center">
+    Promedio semanal ({{ start_week }} a {{ end_week }})
+  </h2>
+
+  {% if labels %}
+    <div class="bg-white p-6 rounded-xl shadow-md w-full max-w-4xl">
+      <canvas id="chartSemana" width="600" height="300"></canvas>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+      const ctx = document.getElementById('chartSemana').getContext('2d');
+      const chartSemana = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: {{ labels|safe }},
+          datasets: [{
+            label: 'Intensidad promedio semanal',
+            data: {{ avg_intensities|safe }},
+            backgroundColor: 'rgba(13, 110, 108, 0.5)', // teal oscuro transparente
+            borderColor: 'rgba(13, 110, 108, 1)',
+            borderWidth: 1,
+            borderRadius: 6,
+            maxBarThickness: 50
+          }]
+        },
+        options: {
+          scales: {
+            y: {
+              beginAtZero: true,
+              max: 5,
+              ticks: {
+                stepSize: 1
+              },
+              title: {
+                display: true,
+                text: 'Intensidad (1-5)',
+                color: '#134e4a', // teal oscuro
+                font: { weight: 'bold' }
+              }
+            }
+          },
+          responsive: true,
+          plugins: {
+            legend: {
+              display: true,
+              position: 'top',
+              labels: {
+                color: '#134e4a',
+                font: { size: 14 }
+              }
+            },
+            title: {
+              display: true,
+              text: 'Intensidad promedio de emociones en la semana',
+              color: '#134e4a',
+              font: { size: 20, weight: 'bold' }
+            }
+          }
+        }
+      });
+    </script>
+  {% else %}
+    <p class="text-gray-600 text-center">No hay datos para esta semana.</p>
+  {% endif %}
+</div>
+{% endblock %}
