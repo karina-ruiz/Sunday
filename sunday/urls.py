@@ -18,10 +18,14 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+from chat.views import chat_view  
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('tests/', include('tests.urls')),
     path('diario/', include('diario.urls')),
     path('registro/', include('registro.urls')),
-]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    path('clima/', include('clima.urls')),
+    path('chat/', include('chat.urls')),  
+    path('api/chat/', chat_view, name='chat_api'), 
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

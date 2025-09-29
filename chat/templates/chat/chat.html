@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="min-h-screen bg-[#FFFBEB] flex items-center justify-center px-4">
+  <div class="w-full max-w-xl bg-white rounded-lg shadow-lg p-6 space-y-4">
+    <h2 class="text-2xl font-semibold text-[#065F46] text-center">Habla con tu amigo IA 😊</h2>
+
+    <div id="chat-log" class="h-96 overflow-y-auto space-y-2 border border-[#FDE68A] p-4 rounded bg-[#FEF3C7]">
+      <!-- Aquí aparecen los mensajes -->
+    </div>
+
+    <div class="space-y-2">
+      <textarea
+        id="user-message"
+        rows="3"
+        placeholder="¿Cómo te sientes hoy?"
+        class="w-full p-3 border border-[#FCD34D] rounded bg-[#FFFBEB] text-[#065F46] placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#F59E0B] resize-none"
+      ></textarea>
+
+      <button
+        id="send-btn"
+        class="w-full bg-[#047857] hover:bg-[#065F46] text-white font-semibold py-2 px-4 rounded"
+      >
+        Enviar
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Genera un session_id único al cargar la página, y guárdalo en sessionStorage para que persista mientras dura la sesión
+  let sessionId = sessionStorage.getItem('session_id');
+  if (!sessionId) {
+    sessionId = crypto.randomUUID();
+    sessionStorage.setItem('session_id', sessionId);
+  }
+
+  document.getElementById('send-btn').onclick = async () => {
+    const input = document.getElementById('user-message');
+    const chatLog = document.getElementById('chat-log');
+    const message = input.value.trim();
+
+    if (!message) {
+      alert("Escribe un mensaje.");
+      return;
+    }
+
+    // Mostrar mensaje del usuario
+    const userMsg = document.createElement('div');
+    userMsg.className = "text-right";
+    userMsg.innerHTML = `<span class="inline-block bg-[#FCD34D] text-[#064E3B] px-3 py-2 rounded-lg font-medium">Tú: ${message}</span>`;
+    chatLog.appendChild(userMsg);
+
+    input.value = "";
+    chatLog.scrollTop = chatLog.scrollHeight;
+
+    // Obtener respuesta de la IA
+    try {
+      const res = await fetch("/api/chat/", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ 
+          message: message,
+          session_id: sessionId
+        })
+      });         
+      const data = await res.json();
+      const reply = data.reply || "No hubo respuesta.";
+
+      const aiMsg = document.createElement('div');
+      aiMsg.className = "text-left";
+      aiMsg.innerHTML = `<span class="inline-block bg-[#FDE68A] text-[#065F46] px-3 py-2 rounded-lg font-medium">IA: ${reply}</span>`;
+      chatLog.appendChild(aiMsg);
+      chatLog.scrollTop = chatLog.scrollHeight;
+    } catch (error) {
+      const errorMsg = document.createElement('div');
+      errorMsg.className = "text-left";
+      errorMsg.innerHTML = `<span class="inline-block bg-[#EF4444] text-white px-3 py-2 rounded-lg font-medium">Error al contactar la IA.</span>`;
+      chatLog.appendChild(errorMsg);
+    }
+  };
+</script>
+
+
+{% endblock %}
