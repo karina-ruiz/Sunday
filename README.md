@@ -1,8 +1,9 @@
 # 🌤️ Sunday – Apoyo emocional digital
 
 <p align="center">
-  <img src="./assets/imagen-de-calculadora.png" alt="Vista previa de Sunday" width="700"/>
+  <img src="./assets/img-proyecto-sunday.png" alt="Vista previa de Sunday" width="700"/>
 </p>
+
 
 ## 📌 Descripción
 **Sunday** es una aplicación web diseñada para brindar apoyo a personas con problemas psicológicos.  
