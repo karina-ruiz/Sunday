@@ -32,3 +32,31 @@ Este proyecto fue creado con un enfoque humano y técnico, combinando formulario
 1. Clona el repositorio:  
    ```bash
    git clone https://github.com/karina-ruiz/sunday.git
+   ```
+
+2. Ingresa a la carpeta del proyecto:  
+   ```bash
+   cd sunday
+   ```
+
+3. Instala las dependencias:  
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+4. Ejecuta el servidor local:  
+   ```bash
+   python manage.py runserver
+   ```
+
+5. Abre tu navegador en `http://localhost:8000` para comenzar a usar la app.
+
+## 👩‍💻 Autor
+**Karina Guadalupe Ruiz Marcial**  
+📌 GitHub: [@karina-ruiz](https://github.com/karina-ruiz)
+
+## 🚀 Mejoras futuras
+- Integración con pasarelas de pago para servicios premium.
+- Análisis emocional más profundo con IA.
+- Panel administrativo para seguimiento clínico.
+- Exportación de entradas personales en PDF.
